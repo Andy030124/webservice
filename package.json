@@ -2,9 +2,13 @@
 	"name": "andypage",
 	"version": "0.0.1",
 	"scripts": {
+		"start": "node ./build/index.js",
+		"prestart": "npm run build",
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "npm run prebuild && vite build",
+		"prebuild": "npm run format && npm run lint",
 		"preview": "vite preview",
+		"deploy": "npm run build && bash ./deploy.sh",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
@@ -12,6 +16,8 @@
 		"@fontsource/fira-mono": "^4.5.10",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-node": "^1.2.4",
+		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
